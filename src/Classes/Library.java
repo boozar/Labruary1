@@ -36,9 +36,9 @@ public class Library {
     }
     // TO DOO  Для чего???
 
-    public Library(int booksNumber) {
+    public Library(int booksNumber, int audioBookNumbers) {
         this.books = new ArrayList<>(booksNumber);
-        this.audioBooks = new ArrayList<>(booksNumber);
+        this.audioBooks = new ArrayList<>(audioBookNumbers);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Library {
         for (ForWebLibrary audioBook : this.audioBooks) {
             result2 += audioBook + "\n";
         }
-        return "Полка с книгами: " + "\n"+ result1 +"\n"+ "Веб библиотека: " + "\n" + result2;
+        return "Полка с книгами: " + "\n"+ result1 +"\n"+ "Веб библиотека: " + "\n" + result2+ "\n";
     }
 
     public String searchByTitle(String title) {
@@ -66,21 +66,21 @@ public class Library {
             if (audioBook.title.toString().contains(title))
                 result2 += audioBook + "\n";
         }
-        return "Полка с книгами: " + "\n" + result1 + "Веб библиотека: " + "\n" + result2;
+        return  "\n" + "Полка с книгами: " + "\n" + result1 + "Веб библиотека: " + "\n" + result2+ "\n";
     }
 
     public ArrayList<ArrayList<Integer>> searchByTitleID(String title) {
         ArrayList<Integer> result1 = new ArrayList<>();
         ArrayList<Integer> result2 = new ArrayList<>();
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 
         for (BookForLibrary book : this.books) {
             if (book.title.contains(title))
                 result1.add(book.ID);
         }
-        for (BookForLibrary book : this.books) {
-            if (book.title.contains(title))
-                result2.add(book.ID);
+        for (ForWebLibrary audioBook : this.audioBooks) {
+            if (audioBook.title.toString().contains(title))
+                result2.add(audioBook.ID);
         }
         result.add(result1);
         result.add(result2);
@@ -107,5 +107,24 @@ public class Library {
         }
         return forWebLibrary;
     }
+    public ArrayList<ArrayList<Integer>> searchByAuthor(String author) {
+        ArrayList<Integer> result1 = new ArrayList<>();
+        ArrayList<Integer> result2 = new ArrayList<>();
+        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
+            for (BookForLibrary book : this.books) {
+                if (book.authors.toString().contains(author))
+                    result1.add(book.ID);
+            }
+            for (ForWebLibrary audioBook : this.audioBooks) {
+                if (audioBook.author.toString().contains(author))
+                    result2.add(audioBook.ID);
+            }
+        result.add(result1);
+        result.add(result2);
+        return result;
+    }
+
+
+
 
 }

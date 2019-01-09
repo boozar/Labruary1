@@ -4,13 +4,14 @@ import Enums.Condition;
 import Enums.CoverType;
 import Enums.Genres;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Main {
     public static void main(String[] args) {
 
 
-        Book book1 = new Book("Alphabet1", new Author[]{new Author(AuthorName.Иванов, new Date("2000/01/01"),
+        Book book1 = new Book("Alphabet1", new Author[]{new Author(AuthorName.ДантеАлигьери, new Date("2012/01/01"),
                 Genres.Детектив)}, new Publisher("Создание предприятия", "www.com,ua", 1990),
                 2017, 40, CoverType.мягкая, Condition.отличное);
 
@@ -20,11 +21,11 @@ public class Main {
                 Genres.Детектив)}, new Publisher("Создание предприятия", "www.com,ua", 1990),
                 2017, 40, CoverType.мягкая, Condition.отличное);
 
-        Book book3 = new Book("Крестоносцы", new Author[]{new Author(AuthorName.Сидоров, new Date("2000/01/01"),
+        Book book3 = new Book("Крестоносцы", new Author[]{new Author(AuthorName.Есенин, new Date("2018/01/01"),
                 Genres.Детектив)}, new Publisher("Создание предприятия", "www.com,ua", 1990),
                 2017, 40, CoverType.мягкая, Condition.отличное);
 
-        Book book4 = new Book("No Alphabet4", new Author[]{new Author(AuthorName.Петров, new Date("2000/01/01"),
+        Book book4 = new Book("Одисей", new Author[]{new Author(AuthorName.Маяковский, new Date("2001/01/01"),
                 Genres.Детектив)}, new Publisher("Создание предприятия", "www.com,ua", 1990),
                 2017, 40, CoverType.мягкая, Condition.отличное);
 
@@ -52,7 +53,7 @@ public class Main {
         ForWebLibrary forWebLibrary3 = new ForWebLibrary(audioBook3);
         ForWebLibrary forWebLibrary4 = new ForWebLibrary(audioBook4);
 
- //////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////
         Library library = new Library();
         library.addBook(bookForLibrary1);
         library.addBook(bookForLibrary2);
@@ -65,12 +66,34 @@ public class Main {
 
         System.out.println(library);
 
-  /*      ArrayList<ArrayList<Integer>> search = library.searchByTitleID("Alpha");
+        ArrayList<ArrayList<Integer>> searchByTitle = new ArrayList<ArrayList<Integer>>();
+        searchByTitle = library.searchByTitleID("Одисей");
+        ArrayList<Integer> searchForBooks = searchByTitle.get(0);
+        ArrayList<Integer> searchForAudioBooks = searchByTitle.get(1);
+        for (Integer bookFind : searchForBooks) {
 
-        for (Integer bookFind : search) {
             System.out.println(library.getBookByID(bookFind));
+        }
+        for (Integer audioBookFind : searchForAudioBooks){
+
+            System.out.println(library.getAudioBookByID(audioBookFind));
+        }
+
+        System.out.println(library.searchByTitle("Одисей"));
+
+        ArrayList<ArrayList<Integer>> searchByAuthor = new ArrayList<ArrayList<Integer>>();
+        searchByAuthor = library.searchByAuthor("Шевченко");
+        ArrayList<Integer> searchForBooksAuthor = searchByAuthor.get(0);
+        ArrayList<Integer> searchForAudioBooksAuthor = searchByAuthor.get(1);
+        for (Integer bookFind2 : searchForBooksAuthor) {
+
+            System.out.println(library.getBookByID(bookFind2));
+        }
+        for (Integer audioBookFind2 : searchForAudioBooksAuthor){
+
+            System.out.println(library.getAudioBookByID(audioBookFind2));
+        }
 
 
-        }*/
     }
 }

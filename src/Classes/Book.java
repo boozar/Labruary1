@@ -80,13 +80,13 @@ public class Book {
         String authorStr = this.authors.toString();
 
         return "Book " +
-                "  Название произведения - " + title + '\'' +
+                "  Название произведения - " + title  +
                 ",  authors - " + authorStr.substring(1, authorStr.length()-1) +
                 ",  publisher - " +  publisher  +
                 ",  publishedYear - " + publishedYear +
                 ",  pages - " + pages +
                 ",  coverType - " + coverType +
-                ",  condition - " + condition ;
+                ",  condition - " + condition  ;
 
     }
 }
